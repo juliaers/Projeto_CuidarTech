@@ -7,7 +7,7 @@ class PacienteForm(forms.ModelForm):
     class Meta:
         model = Paciente
         fields = [
-            'nome completo',
+            'nome_completo',
             'data_nascimento',
             'diagnostico_principal',
             'familiar_responsavel',
