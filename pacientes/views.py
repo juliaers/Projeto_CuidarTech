@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect 
 from .forms import PacienteForm
 from django.http import HttpResponse
+from django.contrib import messages
 
 def home(request):
     return HttpResponse("Página inicial do sistema CuidarTech.")
