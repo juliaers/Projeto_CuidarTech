@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect 
 from .forms import PacienteForm
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Página inicial do sistema CuidarTech.")
 
 def cadastrar_paciente(request):
     if request.method == 'POST':
         form = PacienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sucesso')
+            messages.success(request, 'Paciente cadastrado com sucesso!')
+            return redirect('cadastrar_paciente')
     else:
         form = PacienteForm()
     
