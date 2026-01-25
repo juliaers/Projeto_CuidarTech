@@ -17,6 +17,7 @@ class Profissional(models.Model):
         ('enfermeiro', 'Enfermeiro(a)')
     ]
     
+    # Enxugar para um primeiro momento
     CONSELHOS_SAUDE = [
     ("CRBM", "CRBM - Biomedicina"),
     ("CRM", "CRM - Medicina"),
@@ -46,7 +47,10 @@ class Profissional(models.Model):
     conselho = models.CharField(max_length=40, choices=CONSELHOS_SAUDE)
     numero_conselho = models.CharField(max_length=30)
     status = models
-    # Define o contexto de atuação como "Domiciliar"
+    # Define o contexto de atuação como "Domiciliar", sem poder editar
     ContextoAtuacao = models.CharField(max_length=5, default="DOM", editable=False)
 
+    def __str__(self):
+        return f"{self.nome} {self.sobrenome}".strip() - {self.categoria} or self.user.username 
 
+    
