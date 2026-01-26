@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# Create your models here.
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 # Definição de User
 User = get_user_model()
 
@@ -39,18 +39,22 @@ class Profissional(models.Model):
         ("inativo", "Inativo")
     ]
 
-    id = models.BigAutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True),
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nome = models.CharField(max_length=100)
-    sobrenome = models.CharField(max_length=150),
+    
+    nome = models.CharField(max_length=100, blank=True)
+    sobrenome = models.CharField(max_length=150, blank=True)
+    email = models.EmailField(unique=True, blank=True)
+    telefone = PhoneNumberField(blank=True)
+
+    
     categoria = models.CharField(max_length=20, choices=CATEGORIA)
     conselho = models.CharField(max_length=40, choices=CONSELHOS_SAUDE)
     numero_conselho = models.CharField(max_length=30)
-    status = models
+    #status = models
+
     # Define o contexto de atuação como "Domiciliar", sem poder editar
     ContextoAtuacao = models.CharField(max_length=5, default="DOM", editable=False)
 
     def __str__(self):
-        return f"{self.nome} {self.sobrenome}".strip() - {self.categoria} or self.user.username 
-
-    
+        return f"{self.nome} {self.sobrenome}".strip() - {self.categoria} or self.user.username

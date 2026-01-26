@@ -27,4 +27,4 @@ def perfil(request):
     else:
         form = ProfissionalForm(instance=profissional)
 
-    return render(request, "profissionais/perfil.html", {"form": form})
+    return render(request, "profissionais/perfil.html", {"form": form}) 

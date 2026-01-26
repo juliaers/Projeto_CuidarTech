@@ -27,9 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'phonenumber_field',
     'profissionais.apps.ProfissionaisConfig',
 
 ]
+
+# Região padrão do telefone
+PHONENUMBER_DEFAULT_REGION = 'BR'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,11 +98,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -110,5 +116,7 @@ STATIC_URL = 'static/'
 
 # LOGIN e LOGOUT
 LOGIN_URL = 'login'
+
 LOGIN_REDIRECT_URL = 'perfil' # para onde vai após o login (avaliar a troca por /)
+
 LOGOUT_REDIRECT_URL = 'login' # para onde vai após o logout
