@@ -118,6 +118,6 @@ STATIC_URL = 'static/'
 # LOGIN e LOGOUT
 LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'perfil' # para onde vai após o login (avaliar a troca por /)
+LOGIN_REDIRECT_URL = 'dashboard' # para onde vai após o login
 
-LOGOUT_REDIRECT_URL = 'dashboard' # para onde vai após o logout
+LOGOUT_REDIRECT_URL = 'login' # para onde vai após o logout
