@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+
+  <style>
+    :root{
+      --bg: #fbf7f1;
+      --surface: #ffffff;
+      --text: #3f3a33;
+      --muted: #7a7064;
+      --border: rgba(63,58,51,.10);
+      --shadow: 0 12px 30px rgba(63,58,51,.08);
+      --shadow-soft: 0 10px 22px rgba(63,58,51,.06);
+      --primary: #c7b29a;
+      --primary-strong: #b49a7d;
+      --radius: 22px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 10% 5%, #f3e8dc 0%, transparent 60%),
+        radial-gradient(900px 600px at 90% 90%, #f0e4d6 0%, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      padding: 24px 16px;
+    }
+
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    header{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1{
+      margin:0;
+      font-size: 26px;
+    }
+
+    header p{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      transition: .15s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .card strong{
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .actions{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .action{
+      text-decoration:none;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-strong) 100%);
+      color:#fff;
+      border-radius: 18px;
+      padding: 16px;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 14px 26px rgba(180,154,125,.28);
+      transition: .15s ease;
+    }
+
+    .action:hover{
+      transform: translateY(-2px);
+    }
+
+    footer{
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <div>
+        <h1>Dashboard</h1>
+        <p>Bem-vindo(a), {{ request.user.first_name|default:"usuário" }} 👋</p>
+      </div>
+    </header>
+
+    <!-- RESUMO -->
+    <section class="cards">
+      <div class="card">
+        <h3>Pacientes cadastrados</h3>
+        <strong>12</strong>
+      </div>
+
+      <div class="card">
+        <h3>Atendimentos realizados</h3>
+        <strong>34</strong>
+      </div>
+
+      <div class="card">
+        <h3>Agenda de hoje</h3>
+        <strong>3</strong>
+      </div>
+    </section>
+
+    <!-- AÇÕES RÁPIDAS -->
+    <section class="actions">
+      <a href="#" class="action">➕ Novo paciente</a>
+      <a href="#" class="action">📋 Ver pacientes</a>
+      <a href="#" class="action">📅 Agenda</a>
+    </section>
+
+    <footer>
+      Dica: use os atalhos acima para agilizar seu dia a dia.
+    </footer>
+
+  </main>
+</body>
+</html>

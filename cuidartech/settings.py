@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'core',
     'phonenumber_field',
     'profissionais.apps.ProfissionaisConfig',
 
@@ -119,4 +120,4 @@ LOGIN_URL = 'login'
 
 LOGIN_REDIRECT_URL = 'perfil' # para onde vai após o login (avaliar a troca por /)
 
-LOGOUT_REDIRECT_URL = 'login' # para onde vai após o logout
+LOGOUT_REDIRECT_URL = 'dashboard' # para onde vai após o logout
