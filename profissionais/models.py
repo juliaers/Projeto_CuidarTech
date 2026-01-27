@@ -44,7 +44,7 @@ class Profissional(models.Model):
     
     nome = models.CharField(max_length=100, blank=True)
     sobrenome = models.CharField(max_length=150, blank=True)
-    email = models.EmailField(unique=True, blank=True)
+    #email = models.EmailField(blank=True, null=True)
     telefone = PhoneNumberField(blank=True)
 
     
@@ -55,6 +55,9 @@ class Profissional(models.Model):
 
     # Define o contexto de atuação como "Domiciliar", sem poder editar
     ContextoAtuacao = models.CharField(max_length=5, default="DOM", editable=False)
+
+    # Onboarding
+    onboarding_concluido = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.nome} {self.sobrenome}".strip() - {self.categoria} or self.user.username
