@@ -1,5 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+
 #Tabela no banco de dados do Django = Cadastro de pacientes
 
 class Paciente(models.Model):

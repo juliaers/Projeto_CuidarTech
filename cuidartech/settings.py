@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'pacientes',
 ]
 
+PHONENUMBER_DEFAULT_REGION = 'BR'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -1,5 +1,6 @@
 from django import forms       
 from .models import Paciente
+from phonenumber_field.modelfields import PhoneNumberField
 
 #Criando formulario
 
