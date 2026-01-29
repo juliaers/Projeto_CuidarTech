@@ -44,7 +44,7 @@ class Profissional(models.Model):
     
     nome = models.CharField(max_length=100, blank=True)
     sobrenome = models.CharField(max_length=150, blank=True)
-    email = models.EmailField(unique=True, blank=True)
+    # email = models.EmailField(unique=True, blank=True)
     telefone = PhoneNumberField(blank=True)
 
     
