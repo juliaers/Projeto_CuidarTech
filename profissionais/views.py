@@ -14,13 +14,19 @@ def onboarding(request):
     
     if request.method == "POST":
         form = ProfissionalOnboardingForm(request.POST, instance=profissional)
+
         if form.is_valid():
+            prof = form.save(commit=False)
+            prof.onboarding_concluido = True
             form.save()
+
             messages.success(request, "Perfil atualizado.")
             return redirect(request, "Revise os campos.")
+        
         messages.error(request, "Revise os campos.")
     else:
-        form = ProfissionalForm(instance=profissional)
+        form = ProfissionalOnboardingForm(instance=profissional)
+    
     return render(request, "profissionais/onboarding.html", {"form": form})
 
 
