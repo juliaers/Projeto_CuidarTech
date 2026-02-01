@@ -20,8 +20,8 @@ def cadastrar_paciente(request):
     return render(request, 'pacientes/cadastro.html',
     {'form':form})
 
-def lista_paciente(request):
+def lista_pacientes(request):
     pacientes = Paciente.objects.all()
-    return render(request, 'pacientes/lista_paciente.html', {
+    return render(request, 'pacientes/lista_pacientes.html', {
         'pacientes' : pacientes
     })
