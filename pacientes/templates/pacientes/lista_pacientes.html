@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Meus Pacientes</h2>
+
+<a href="{% url 'cadastrar_paciente' %}" class="btn btn-primary mb-3">
+    + Cadastrar paciente
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data de nascimento</th>
+            <th>Familiar responsável</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in pacientes %}
+        <tr>
+            <td>{{ paciente.nome_completo }}</td>
+            <td>{{ paciente.data_nascimento }}</td>
+            <td>{{ paciente.familiar_responsavel }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum paciente cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
