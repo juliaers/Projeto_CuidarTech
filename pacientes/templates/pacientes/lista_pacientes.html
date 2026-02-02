@@ -1,32 +1,146 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacientes</title>
 
-{% block content %}
-<h2>Meus Pacientes</h2>
+  <style>
+    :root{
+      --bg: #fbf7f1;
+      --surface: #ffffff;
+      --text: #3f3a33;
+      --muted: #7a7064;
+      --border: rgba(63,58,51,.10);
+      --shadow: 0 12px 30px rgba(63,58,51,.08);
+      --primary: #c7b29a;
+      --primary-strong: #b49a7d;
+      --radius: 22px;
+    }
 
-<a href="{% url 'cadastrar_paciente' %}" class="btn btn-primary mb-3">
-    + Cadastrar paciente
-</a>
+    *{ box-sizing: border-box; }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Data de nascimento</th>
-            <th>Familiar responsável</th>
-        </tr>
-    </thead>
-    <tbody>
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 10% 5%, #f3e8dc 0%, transparent 60%),
+        radial-gradient(900px 600px at 90% 90%, #f0e4d6 0%, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      padding: 32px 16px;
+    }
+
+    .container{
+      width: min(900px, 100%);
+      margin: 0 auto;
+    }
+
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+    }
+
+    h1{
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .btn{
+      border: none;
+      border-radius: 18px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .15s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary{
+      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-strong) 100%);
+      color: #fff;
+      box-shadow: 0 14px 26px rgba(180,154,125,.28);
+    }
+
+    .btn-primary:hover{ transform: translateY(-1px); }
+
+    .list{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .name{
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .info{
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .empty{
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="header">
+      <h1>Pacientes</h1>
+      <a href="{% url 'cadastrar_paciente' %}" class="btn btn-primary">
+        + Novo paciente
+      </a>
+    </div>
+
+    {% if pacientes %}
+      <section class="list">
         {% for paciente in pacientes %}
-        <tr>
-            <td>{{ paciente.nome_completo }}</td>
-            <td>{{ paciente.data_nascimento }}</td>
-            <td>{{ paciente.familiar_responsavel }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">Nenhum paciente cadastrado.</td>
-        </tr>
+          <article class="card">
+            <div class="name">
+                <a href="{% url 'paciente_detalhe' paciente.pk %}">
+                    {{ paciente.nome_completo }}
+                </a>
+            </div>
+
+            <div class="info">
+              <strong>Nascimento:</strong> {{ paciente.data_nascimento }}<br>
+              <strong>Responsável:</strong> {{ paciente.familiar_responsavel }}
+            </div>
+          </article>
         {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+      </section>
+    {% else %}
+      <div class="empty">
+        Nenhum paciente cadastrado ainda.
+      </div>
+    {% endif %}
+
+  </main>
+</body>
+</html>

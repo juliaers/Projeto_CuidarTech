@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect 
 from .forms import PacienteForm
+
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Paciente
+from django.shortcuts import get_object_or_404
 
 def home(request):
     return HttpResponse("Página inicial do sistema CuidarTech.")
@@ -24,4 +26,11 @@ def lista_pacientes(request):
     pacientes = Paciente.objects.all()
     return render(request, 'pacientes/lista_pacientes.html', {
         'pacientes' : pacientes
+    })
+
+def paciente_detalhe(request, pk):
+    paciente = get_object_or_404(Paciente, pk=pk)
+    print(paciente.nome_completo)
+    return render(request, 'pacientes/paciente_detalhe.html', {
+        'paciente': paciente
     })
