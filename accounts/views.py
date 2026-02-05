@@ -13,7 +13,7 @@ def cadastro(request):
             login(request, user)
 
             messages.success(request, "Conta criada com sucesso")
-            return redirect("dashboard") # Redireciona para o perfil
+            return redirect("welcome") # Redireciona para o perfil
         else:
             messages.error(request, "Revise os campos e tente novamente.")
     else:

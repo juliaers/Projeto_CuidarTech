@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onboarding</title>
+  <title>Bem-vindo(a) • CuidarTech</title>
 
   <style>
     :root{
@@ -169,6 +169,15 @@
       font-size: 12px;
       color: var(--muted);
       margin: 0;
+      line-height: 1.4;
+    }
+    .fineprint a{
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .fineprint a:hover{
+      color: var(--primary-strong);
     }
 
     @media (min-width: 520px){
@@ -219,12 +228,17 @@
       </div>
 
       <div class="actions">
-        <!-- Ajuste o URL conforme sua rota: dashboard, cadastro, ou perfil inicial -->
-        <a class="btn btn-primary" href="{% url 'dashboard' %}">Começar</a>
+        <!-- ✅ Começar = vai para o FORM de onboarding -->
+        <a class="btn btn-primary" href="{% url 'onboarding_profissional' %}">Começar</a>
+
+        <!-- ✅ Pular = vai para o dashboard (o dashboard te manda pro onboarding se faltar) -->
         <a class="btn btn-ghost" href="{% url 'dashboard' %}">Pular</a>
       </div>
 
-      <p class="fineprint">Você pode atualizar seus dados a qualquer momento no Perfil.</p>
+      <p class="fineprint">
+        Você pode atualizar dados básicos a qualquer momento no
+        <a href="{% url 'perfil' %}">Perfil</a>.
+      </p>
     </section>
   </main>
 </body>

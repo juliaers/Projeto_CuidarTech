@@ -5,7 +5,21 @@ from .models import Profissional
 from .forms import ProfissionalForm, ProfissionalOnboardingForm
 
 @login_required
-def onboarding(request):
+def welcome(request):
+    profissional = request.user.profissional
+
+    # Se já fez onboarding, não volta para welcome
+    if profissional.onboarding_concluido:
+        messages.info(request, "Você já concluiu seu cadastro.")
+        return redirect("dashboard")
+    
+    if request.session.pop(request,"msg_conta_criada", False):
+        messages.success(request, "Conta criada com sucesso!")
+    
+    return render(request, "profissionais/welcome.html")
+
+@login_required
+def onboarding_profissional(request):
     profissional = request.user.profissional
 
     if profissional.onboarding_concluido:
@@ -18,16 +32,16 @@ def onboarding(request):
         if form.is_valid():
             prof = form.save(commit=False)
             prof.onboarding_concluido = True
-            form.save()
+            prof.save()
 
             messages.success(request, "Perfil atualizado.")
-            return redirect(request, "Revise os campos.")
+            return redirect("dashboard")
         
         messages.error(request, "Revise os campos.")
     else:
         form = ProfissionalOnboardingForm(instance=profissional)
     
-    return render(request, "profissionais/onboarding.html", {"form": form})
+    return render(request, "profissionais/onboarding_profissional.html", {"form": form})
 
 
 @login_required
