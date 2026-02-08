@@ -1,9 +1,0 @@
-<h1>Meu Perfil</h1>
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Salvar</button>
-</form>
-
-<p><a href="{% url 'logout' %}">Sair</a></p>
