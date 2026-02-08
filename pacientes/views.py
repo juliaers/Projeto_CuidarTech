@@ -34,3 +34,19 @@ def paciente_detalhe(request, pk):
     return render(request, 'pacientes/paciente_detalhe.html', {
         'paciente': paciente
     })
+
+def editar_paciente(request, pk):
+    paciente = get_object_or_404(Paciente, pk=pk)
+    if request.method == 'POST':
+        form = PacienteForm(request.POST, instance=paciente)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Paciente atualizado com sucesso!')
+            return redirect('paciente_detalhe', pk=paciente.pk)
+    else:
+        form = PacienteForm(instance=paciente)
+    
+    return render(request, 'pacientes/editar_paciente.html', {
+        'form': form,
+        'paciente': paciente
+    })
