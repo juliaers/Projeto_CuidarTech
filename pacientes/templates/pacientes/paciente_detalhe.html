@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ paciente.nome_completo }}</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f7f5f2; /* off-white */
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #4a4a4a;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      row-gap: 12px;
+      column-gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #7a7a7a;
+    }
+
+    .value {
+      color: #333;
+    }
+
+    .observacoes {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #faf8f5;
+      border-radius: 8px;
+      border-left: 4px solid #d8cfc4;
+    }
+
+    .observacoes strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #5a5a5a;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-voltar {
+      text-decoration: none;
+      background-color: #e8e2da;
+      color: #4a4a4a;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-voltar:hover {
+      background-color: #dcd4ca;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+
+      <h1>{{ paciente.nome_completo }}</h1>
+
+      <div class="info">
+        <div class="label">Data de nascimento:</div>
+        <div class="value">{{ paciente.data_nascimento }}</div>
+
+        <div class="label">Diagnóstico principal:</div>
+        <div class="value">{{ paciente.diagnostico_principal }}</div>
+
+        <div class="label">Responsável familiar:</div>
+        <div class="value">{{ paciente.familiar_responsavel }}</div>
+
+        <div class="label">Contato do responsável:</div>
+        <div class="value">{{ paciente.contato_familiar }}</div>
+      </div>
+
+      <div class="observacoes">
+        <strong>Observações:</strong>
+        <p>{{ paciente.observacoes|default:"Nenhuma observação registrada." }}</p>
+      </div>
+
+      <div class="actions">
+        <a href="{% url 'lista_pacientes' %}" class="btn-voltar">Voltar para a lista</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
