@@ -6,9 +6,11 @@ from django.contrib import messages
 from .models import Paciente
 from django.shortcuts import get_object_or_404
 
+# Função temporária para a página inicial
 def home(request):
     return HttpResponse("Página inicial do sistema CuidarTech.")
 
+# Função para cadastrar um novo paciente
 def cadastrar_paciente(request):
     if request.method == 'POST':
         form = PacienteForm(request.POST)
@@ -22,12 +24,14 @@ def cadastrar_paciente(request):
     return render(request, 'pacientes/cadastro.html',
     {'form':form})
 
+# Função para listar os pacientes cadastrados
 def lista_pacientes(request):
     pacientes = Paciente.objects.all()
     return render(request, 'pacientes/lista_pacientes.html', {
         'pacientes' : pacientes
     })
 
+# Função para exibir os detalhes de um paciente específico
 def paciente_detalhe(request, pk):
     paciente = get_object_or_404(Paciente, pk=pk)
     print(paciente.nome_completo)
@@ -35,6 +39,7 @@ def paciente_detalhe(request, pk):
         'paciente': paciente
     })
 
+# Função para editar os detalhes de um paciente específico
 def editar_paciente(request, pk):
     paciente = get_object_or_404(Paciente, pk=pk)
     if request.method == 'POST':
@@ -46,7 +51,7 @@ def editar_paciente(request, pk):
     else:
         form = PacienteForm(instance=paciente)
     
-    return render(request, 'pacientes/editar_paciente.html', {
+    return render(request, 'pacientes/cadastro.html', {
         'form': form,
         'paciente': paciente
     })

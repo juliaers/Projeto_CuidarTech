@@ -68,9 +68,10 @@
       margin-top: 30px;
       display: flex;
       justify-content: flex-start;
+      gap: 16px;
     }
 
-    .btn-voltar {
+    .btn {
       text-decoration: none;
       background-color: #e8e2da;
       color: #4a4a4a;
@@ -80,7 +81,7 @@
       transition: background-color 0.2s ease;
     }
 
-    .btn-voltar:hover {
+    .btn:hover {
       background-color: #dcd4ca;
     }
   </style>
@@ -112,7 +113,8 @@
       </div>
 
       <div class="actions">
-        <a href="{% url 'lista_pacientes' %}" class="btn-voltar">Voltar para a lista</a>
+        <a href="{% url 'lista_pacientes' %}" class="btn">Voltar para a lista</a>
+        <a href="{% url 'paciente_editar' paciente.pk %}" class="btn">Editar paciente</a>
       </div>
 
     </div>
