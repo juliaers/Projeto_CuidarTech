@@ -13,7 +13,7 @@ def welcome(request):
         messages.info(request, "Você já concluiu seu cadastro.")
         return redirect("dashboard")
     
-    if request.session.pop(request,"msg_conta_criada", False):
+    if request.session.pop("msg_conta_criada", False):
         messages.success(request, "Conta criada com sucesso!")
     
     return render(request, "profissionais/welcome.html")

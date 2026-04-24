@@ -60,4 +60,8 @@ class Profissional(models.Model):
     onboarding_concluido = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.nome} {self.sobrenome}".strip() - {self.categoria} or self.user.username
+        nome_completo = f"{self.nome} {self.sobrenome}".strip()
+        if nome_completo:
+            categoria = self.get_categoria_display()
+            return f"{nome_completo} ({categoria})"
+        return self.user.name
