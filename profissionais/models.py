@@ -39,7 +39,7 @@ class Profissional(models.Model):
         ("inativo", "Inativo")
     ]
 
-    id = models.BigAutoField(primary_key=True),
+    id = models.BigAutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     nome = models.CharField(max_length=100, blank=True)
